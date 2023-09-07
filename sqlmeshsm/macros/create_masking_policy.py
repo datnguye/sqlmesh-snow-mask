@@ -1,11 +1,13 @@
 import os
 
-from sqlmesh import macro
+from sqlmesh.core.macros import MacroEvaluator, macro
 
 
 @macro()
 def create_masking_policy(
-    evaluator, func: str, ddl_dir: str = f"{os.getcwd()}/macros/snow-mask-ddl"
+    evaluator: MacroEvaluator,
+    func: str,
+    ddl_dir: str = f"{os.getcwd()}/macros/snow-mask-ddl",
 ):
     ddl_file = f"{ddl_dir}/{func}.sql"
     func_parts = str(func).split(".")

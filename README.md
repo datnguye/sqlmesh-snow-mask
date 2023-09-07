@@ -106,7 +106,7 @@ If you've ever wanted to contribute to this tool, and a great cause, now is your
 
 See the contributing docs [CONTRIBUTING](./CONTRIBUTING.md) for more information.
 
-Finally, super thanks to our **_Contributors_**:
+Our **_Contributors_**:
 
 <a href="https://github.com/datnguye/sqlmesh-snow-mask/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=datnguye/sqlmesh-snow-mask" />

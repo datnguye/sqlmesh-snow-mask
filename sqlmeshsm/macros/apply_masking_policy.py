@@ -1,9 +1,9 @@
-from sqlmesh import macro
+from sqlmesh.core.macros import MacroEvaluator, macro
 
 
 @macro()
 def apply_masking_policy(
-    evaluator,
+    evaluator: MacroEvaluator,
     model: str,
     column: str,
     func: str,

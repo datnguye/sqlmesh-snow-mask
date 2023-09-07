@@ -4,7 +4,7 @@ import click
 
 from sqlmeshsm.hooks.drop_masking_policy import drop_masking_policy
 
-__version__ = importlib.metadata.version("sfhook")
+__version__ = importlib.metadata.version("sqlmeshsm")
 
 # sfhook
 @click.group(
