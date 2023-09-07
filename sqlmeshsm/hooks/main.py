@@ -2,11 +2,12 @@ import importlib.metadata
 
 import click
 
+from sqlmeshsm.hooks.custom import run_custom_hook
 from sqlmeshsm.hooks.drop_masking_policy import drop_masking_policy
 
 __version__ = importlib.metadata.version("sqlmeshsm")
 
-# sfhook
+# hook
 @click.group(
     context_settings={"help_option_names": ["-h", "--help"]},
     invoke_without_command=True,
@@ -15,12 +16,12 @@ __version__ = importlib.metadata.version("sqlmeshsm")
 )
 @click.version_option(__version__)
 @click.pass_context
-def sfhook(ctx, **kwargs):
+def hook(ctx, **kwargs):
     """Snowflake Hooker"""
 
 
-# sqlmeshsm drop_masking_policy
-@sfhook.command(name="drop_masking_policy")
+# hook drop_masking_policy
+@hook.command(name="drop_masking_policy")
 @click.pass_context
 @click.option(
     "--masking-policy-function",
@@ -42,3 +43,12 @@ def hook__drop_masking_policy(ctx, **kwargs):
         mp_func_name=kwargs.get("masking_policy_function"),
         config_path=kwargs.get("config"),
     )
+
+
+# hook custom /path/to/your_hook.py
+@hook.command(name="custom")
+@click.pass_context
+@click.argument("filepath")
+def hook__custom(ctx, filepath, **kwargs):
+    """Custom Hook > Write your hook in python file and run"""
+    run_custom_hook(path=filepath)

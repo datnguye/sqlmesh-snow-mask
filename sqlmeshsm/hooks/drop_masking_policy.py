@@ -44,14 +44,14 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
         iter(cursor), columns=[x[0] for x in cursor.description]
     )
 
+    unset_sql = ""
     for column in columns:
-        cursor.execute(
-            expressions=f"""
+        unset_sql += f"""
             ALTER TABLE {column.materialization} {column.model}
             ALTER COLUMN {column.column}
             UNSET MASKING POLICY;
         """
-        )
+        cursor.execute(unset_sql)
 
     # Drop the masking policy
     cursor.execute(expressions=f"DROP MASKING POLICY {mp_func_name};")

@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "sqlmeshsm"
 version = "0.1.0b3"
-description = "SQLMesh macros used for ❄️ Dynamic Masking Policies implementation ✏️, and the Snowflake Hooker CLI (sfhook) ⭐"
+description = "SQLMesh macros used for ❄️ Dynamic Masking Policies implementation ✏️, and the Snowflake Hooker CLI (hook) ⭐"
 authors = ["Dat Nguyen <datnguyen.it09@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -41,7 +41,7 @@ isort = "^5.12.0"
 autoflake = "^2.0.1"
 
 [tool.poetry.scripts]
-sfhook = "sqlmeshsm.main:main"
+hook = "sqlmeshsm.main:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

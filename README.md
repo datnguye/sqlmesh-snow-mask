@@ -1,15 +1,16 @@
 # sqlmeshsm
 
-[SQLMesh macros](https://sqlmesh.readthedocs.io/en/stable/concepts/macros/sqlmesh_macros/) used for ❄️ [Dynamic Masking Policies](https://docs.snowflake.com/en/user-guide/security-column-ddm-use) implementation ✏️, and the Snowflake Hooker CLI (`sfhook`) ⭐
+[SQLMesh macros](https://sqlmesh.readthedocs.io/en/stable/concepts/macros/sqlmesh_macros/) used for ❄️ [Dynamic Masking Policies](https://docs.snowflake.com/en/user-guide/security-column-ddm-use) implementation ✏️, and the Snowflake Hooker CLI (`hook`) ⭐
 
 **_List of macros_**:
 
-- [`create_masking_policy`](Indevelopment)
-- [`apply_masking_policy`](Indevelopment)
+- `create_masking_policy` ([source](./sqlmeshsm/macros/create_masking_policy.py))
+- `apply_masking_policy` ([source](./sqlmeshsm/macros/apply_masking_policy.py))
   
 **_Hooks_**:
 
-- [`sfhook drop_masking_policy -c {config.yml} -mp {func}`](Indevelopment)
+- `hook drop_masking_policy -c {config.yml} -mp {func}`
+- `hook custom /path/to/my_hook.py
 
 ## Data Masking Development
 
@@ -90,10 +91,10 @@ Let's plan and apply it now: `sqlmesh plan --select-model my_schema.my_customer_
 Let's run the built-in hooks:
 
 ```bash
-sfhook drop_masking_policy -c /path/to/sqlmesh/config.yml -mp you_mp_function_name
+hook drop_masking_policy -c /path/to/sqlmesh/config.yml -mp you_mp_function_name
 ```
 
-> Try `sfhook -h` for more options.
+> Try `hook -h` for more options.
 
 **_Voila! Happy Masking 🎉_**
 <!-- 
