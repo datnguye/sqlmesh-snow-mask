@@ -1,3 +1,2 @@
 sqlmesh
 sqlmesh[postgres]
-sqlmesh_snow_mask

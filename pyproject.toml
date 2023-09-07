@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "sfhook"
-version = "0.0.0"
-description = "SQLMesh macros for Snowflake Dynamic Masking Policies"
+name = "sqlmeshsm"
+version = "0.1.0b2"
+description = "SQLMesh macros used for ❄️ Dynamic Masking Policies implementation ✏️, and the Snowflake Hooker CLI (sfhook) ⭐"
 authors = ["Dat Nguyen <datnguyen.it09@gmail.com>"]
 license = "MIT"
 readme = "README.md"

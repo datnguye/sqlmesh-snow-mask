@@ -9,7 +9,7 @@ gateways:
             host: localhost
             database: sqlmeshsm
             user: postgres
-            password: postgres
+            password: admin
             port: 5432
             concurrent_tasks: 1 # postgres race condition issue
 

@@ -69,7 +69,7 @@ def __parse_sqlmesh_config(config: dict):
 
     Returns:
         dict: Config dict or None if failed to parse
-    """    
+    """
     return (
         config.get("gateways", {})
         .get(config.get("default_gateway", ""), {})
