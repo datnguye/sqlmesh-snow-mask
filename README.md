@@ -16,7 +16,7 @@
 ### 1. Installation
 
 ```bash
-pip install sqlmesh_snow_mask --upgrade
+pip install sqlmeshsm --upgrade
 ```
 
 In your `(sqlmesh-project-dir)/macros/__init__.py`, let's import our lib:
