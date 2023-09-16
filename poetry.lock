@@ -796,6 +796,26 @@ files = [
 ]
 
 [[package]]
+name = "importlib-metadata"
+version = "6.8.0"
+description = "Read metadata from Python packages"
+category = "dev"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "importlib_metadata-6.8.0-py3-none-any.whl", hash = "sha256:3ebb78df84a805d7698245025b975d9d67053cd94c79245ba4b3eb694abe68bb"},
+    {file = "importlib_metadata-6.8.0.tar.gz", hash = "sha256:dbace7892d8c0c4ac1ad096662232f831d4e64f4c4545bd53016a3e9d4654743"},
+]
+
+[package.dependencies]
+zipp = ">=0.5"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+perf = ["ipython"]
+testing = ["flufl.flake8", "importlib-resources (>=1.3)", "packaging", "pyfakefs", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy (>=0.9.1)", "pytest-perf (>=0.9.2)", "pytest-ruff"]
+
+[[package]]
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
@@ -889,6 +909,25 @@ plugins = ["setuptools"]
 requirements-deprecated-finder = ["pip-api", "pipreqs"]
 
 [[package]]
+name = "jaraco-classes"
+version = "3.3.0"
+description = "Utility functions for Python class constructs"
+category = "dev"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "jaraco.classes-3.3.0-py3-none-any.whl", hash = "sha256:10afa92b6743f25c0cf5f37c6bb6e18e2c5bb84a16527ccfc0040ea377e7aaeb"},
+    {file = "jaraco.classes-3.3.0.tar.gz", hash = "sha256:c063dd08e89217cee02c8d5e5ec560f2c8ce6cdc2fcdc2e68f7b2e5547ed3621"},
+]
+
+[package.dependencies]
+more-itertools = "*"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy (>=0.9.1)", "pytest-ruff"]
+
+[[package]]
 name = "jedi"
 version = "0.19.0"
 description = "An autocompletion tool for Python that can be used for text editors."
@@ -907,6 +946,22 @@ parso = ">=0.8.3,<0.9.0"
 docs = ["Jinja2 (==2.11.3)", "MarkupSafe (==1.1.1)", "Pygments (==2.8.1)", "alabaster (==0.7.12)", "babel (==2.9.1)", "chardet (==4.0.0)", "commonmark (==0.8.1)", "docutils (==0.17.1)", "future (==0.18.2)", "idna (==2.10)", "imagesize (==1.2.0)", "mock (==1.0.1)", "packaging (==20.9)", "pyparsing (==2.4.7)", "pytz (==2021.1)", "readthedocs-sphinx-ext (==2.1.4)", "recommonmark (==0.5.0)", "requests (==2.25.1)", "six (==1.15.0)", "snowballstemmer (==2.1.0)", "sphinx (==1.8.5)", "sphinx-rtd-theme (==0.4.3)", "sphinxcontrib-serializinghtml (==1.1.4)", "sphinxcontrib-websupport (==1.2.4)", "urllib3 (==1.26.4)"]
 qa = ["flake8 (==5.0.4)", "mypy (==0.971)", "types-setuptools (==67.2.0.1)"]
 testing = ["Django (<3.1)", "attrs", "colorama", "docopt", "pytest (<7.0.0)"]
+
+[[package]]
+name = "jeepney"
+version = "0.8.0"
+description = "Low-level, pure Python DBus protocol wrapper."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "jeepney-0.8.0-py3-none-any.whl", hash = "sha256:c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"},
+    {file = "jeepney-0.8.0.tar.gz", hash = "sha256:5efe48d255973902f6badc3ce55e2aa6c5c3b3bc642059ef3a91247bcfcc5806"},
+]
+
+[package.extras]
+test = ["async-timeout", "pytest", "pytest-asyncio (>=0.17)", "pytest-trio", "testpath", "trio"]
+trio = ["async_generator", "trio"]
 
 [[package]]
 name = "jinja2"
@@ -937,6 +992,30 @@ files = [
     {file = "jupyterlab_widgets-3.0.9-py3-none-any.whl", hash = "sha256:3cf5bdf5b897bf3bccf1c11873aa4afd776d7430200f765e0686bd352487b58d"},
     {file = "jupyterlab_widgets-3.0.9.tar.gz", hash = "sha256:6005a4e974c7beee84060fdfba341a3218495046de8ae3ec64888e5fe19fdb4c"},
 ]
+
+[[package]]
+name = "keyring"
+version = "24.2.0"
+description = "Store and access your passwords safely."
+category = "dev"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "keyring-24.2.0-py3-none-any.whl", hash = "sha256:4901caaf597bfd3bbd78c9a0c7c4c29fcd8310dab2cffefe749e916b6527acd6"},
+    {file = "keyring-24.2.0.tar.gz", hash = "sha256:ca0746a19ec421219f4d713f848fa297a661a8a8c1504867e55bfb5e09091509"},
+]
+
+[package.dependencies]
+importlib-metadata = {version = ">=4.11.4", markers = "python_version < \"3.12\""}
+"jaraco.classes" = "*"
+jeepney = {version = ">=0.4.2", markers = "sys_platform == \"linux\""}
+pywin32-ctypes = {version = ">=0.2.0", markers = "sys_platform == \"win32\""}
+SecretStorage = {version = ">=3.2", markers = "sys_platform == \"linux\""}
+
+[package.extras]
+completion = ["shtab"]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-mypy (>=0.9.1)", "pytest-ruff"]
 
 [[package]]
 name = "markdown-it-py"
@@ -1060,6 +1139,18 @@ python-versions = ">=3.7"
 files = [
     {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
     {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
+]
+
+[[package]]
+name = "more-itertools"
+version = "10.1.0"
+description = "More routines for operating on iterables, beyond itertools"
+category = "dev"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "more-itertools-10.1.0.tar.gz", hash = "sha256:626c369fa0eb37bac0291bce8259b332fd59ac792fa5497b59837309cd5b114a"},
+    {file = "more_itertools-10.1.0-py3-none-any.whl", hash = "sha256:64e0735fcfdc6f3464ea133afe8ea4483b1c5fe3a3d69852e6503b43a0b222e6"},
 ]
 
 [[package]]
@@ -1372,6 +1463,27 @@ files = [
 wcwidth = "*"
 
 [[package]]
+name = "psycopg2"
+version = "2.9.7"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "psycopg2-2.9.7-cp310-cp310-win32.whl", hash = "sha256:1a6a2d609bce44f78af4556bea0c62a5e7f05c23e5ea9c599e07678995609084"},
+    {file = "psycopg2-2.9.7-cp310-cp310-win_amd64.whl", hash = "sha256:b22ed9c66da2589a664e0f1ca2465c29b75aaab36fa209d4fb916025fb9119e5"},
+    {file = "psycopg2-2.9.7-cp311-cp311-win32.whl", hash = "sha256:44d93a0109dfdf22fe399b419bcd7fa589d86895d3931b01fb321d74dadc68f1"},
+    {file = "psycopg2-2.9.7-cp311-cp311-win_amd64.whl", hash = "sha256:91e81a8333a0037babfc9fe6d11e997a9d4dac0f38c43074886b0d9dead94fe9"},
+    {file = "psycopg2-2.9.7-cp37-cp37m-win32.whl", hash = "sha256:d1210fcf99aae6f728812d1d2240afc1dc44b9e6cba526a06fb8134f969957c2"},
+    {file = "psycopg2-2.9.7-cp37-cp37m-win_amd64.whl", hash = "sha256:e9b04cbef584310a1ac0f0d55bb623ca3244c87c51187645432e342de9ae81a8"},
+    {file = "psycopg2-2.9.7-cp38-cp38-win32.whl", hash = "sha256:d5c5297e2fbc8068d4255f1e606bfc9291f06f91ec31b2a0d4c536210ac5c0a2"},
+    {file = "psycopg2-2.9.7-cp38-cp38-win_amd64.whl", hash = "sha256:8275abf628c6dc7ec834ea63f6f3846bf33518907a2b9b693d41fd063767a866"},
+    {file = "psycopg2-2.9.7-cp39-cp39-win32.whl", hash = "sha256:c7949770cafbd2f12cecc97dea410c514368908a103acf519f2a346134caa4d5"},
+    {file = "psycopg2-2.9.7-cp39-cp39-win_amd64.whl", hash = "sha256:b6bd7d9d3a7a63faae6edf365f0ed0e9b0a1aaf1da3ca146e6b043fb3eb5d723"},
+    {file = "psycopg2-2.9.7.tar.gz", hash = "sha256:f00cc35bd7119f1fed17b85bd1007855194dde2cbd8de01ab8ebb17487440ad8"},
+]
+
+[[package]]
 name = "ptyprocess"
 version = "0.7.0"
 description = "Run a subprocess in a pseudo terminal"
@@ -1409,6 +1521,44 @@ files = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
 ]
+
+[[package]]
+name = "pyarrow"
+version = "10.0.1"
+description = "Python library for Apache Arrow"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pyarrow-10.0.1-cp310-cp310-macosx_10_14_x86_64.whl", hash = "sha256:e00174764a8b4e9d8d5909b6d19ee0c217a6cf0232c5682e31fdfbd5a9f0ae52"},
+    {file = "pyarrow-10.0.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:6f7a7dbe2f7f65ac1d0bd3163f756deb478a9e9afc2269557ed75b1b25ab3610"},
+    {file = "pyarrow-10.0.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cb627673cb98708ef00864e2e243f51ba7b4c1b9f07a1d821f98043eccd3f585"},
+    {file = "pyarrow-10.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ba71e6fc348c92477586424566110d332f60d9a35cb85278f42e3473bc1373da"},
+    {file = "pyarrow-10.0.1-cp310-cp310-win_amd64.whl", hash = "sha256:7b4ede715c004b6fc535de63ef79fa29740b4080639a5ff1ea9ca84e9282f349"},
+    {file = "pyarrow-10.0.1-cp311-cp311-macosx_10_14_x86_64.whl", hash = "sha256:e3fe5049d2e9ca661d8e43fab6ad5a4c571af12d20a57dffc392a014caebef65"},
+    {file = "pyarrow-10.0.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:254017ca43c45c5098b7f2a00e995e1f8346b0fb0be225f042838323bb55283c"},
+    {file = "pyarrow-10.0.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:70acca1ece4322705652f48db65145b5028f2c01c7e426c5d16a30ba5d739c24"},
+    {file = "pyarrow-10.0.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:abb57334f2c57979a49b7be2792c31c23430ca02d24becd0b511cbe7b6b08649"},
+    {file = "pyarrow-10.0.1-cp311-cp311-win_amd64.whl", hash = "sha256:1765a18205eb1e02ccdedb66049b0ec148c2a0cb52ed1fb3aac322dfc086a6ee"},
+    {file = "pyarrow-10.0.1-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:61f4c37d82fe00d855d0ab522c685262bdeafd3fbcb5fe596fe15025fbc7341b"},
+    {file = "pyarrow-10.0.1-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e141a65705ac98fa52a9113fe574fdaf87fe0316cde2dffe6b94841d3c61544c"},
+    {file = "pyarrow-10.0.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bf26f809926a9d74e02d76593026f0aaeac48a65b64f1bb17eed9964bfe7ae1a"},
+    {file = "pyarrow-10.0.1-cp37-cp37m-win_amd64.whl", hash = "sha256:443eb9409b0cf78df10ced326490e1a300205a458fbeb0767b6b31ab3ebae6b2"},
+    {file = "pyarrow-10.0.1-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:f2d00aa481becf57098e85d99e34a25dba5a9ade2f44eb0b7d80c80f2984fc03"},
+    {file = "pyarrow-10.0.1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:b1fc226d28c7783b52a84d03a66573d5a22e63f8a24b841d5fc68caeed6784d4"},
+    {file = "pyarrow-10.0.1-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:efa59933b20183c1c13efc34bd91efc6b2997377c4c6ad9272da92d224e3beb1"},
+    {file = "pyarrow-10.0.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:668e00e3b19f183394388a687d29c443eb000fb3fe25599c9b4762a0afd37775"},
+    {file = "pyarrow-10.0.1-cp38-cp38-win_amd64.whl", hash = "sha256:d1bc6e4d5d6f69e0861d5d7f6cf4d061cf1069cb9d490040129877acf16d4c2a"},
+    {file = "pyarrow-10.0.1-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:42ba7c5347ce665338f2bc64685d74855900200dac81a972d49fe127e8132f75"},
+    {file = "pyarrow-10.0.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:b069602eb1fc09f1adec0a7bdd7897f4d25575611dfa43543c8b8a75d99d6874"},
+    {file = "pyarrow-10.0.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:94fb4a0c12a2ac1ed8e7e2aa52aade833772cf2d3de9dde685401b22cec30002"},
+    {file = "pyarrow-10.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:db0c5986bf0808927f49640582d2032a07aa49828f14e51f362075f03747d198"},
+    {file = "pyarrow-10.0.1-cp39-cp39-win_amd64.whl", hash = "sha256:0ec7587d759153f452d5263dbc8b1af318c4609b607be2bd5127dcda6708cdb1"},
+    {file = "pyarrow-10.0.1.tar.gz", hash = "sha256:1a14f57a5f472ce8234f2964cd5184cccaa8df7e04568c64edc33b23eb285dd5"},
+]
+
+[package.dependencies]
+numpy = ">=1.16.6"
 
 [[package]]
 name = "pycodestyle"
@@ -1667,6 +1817,18 @@ files = [
 ]
 
 [[package]]
+name = "pywin32-ctypes"
+version = "0.2.2"
+description = "A (partial) reimplementation of pywin32 using ctypes/cffi"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "pywin32-ctypes-0.2.2.tar.gz", hash = "sha256:3426e063bdd5fd4df74a14fa3cf80a0b42845a87e1d1e81f6549f9daec593a60"},
+    {file = "pywin32_ctypes-0.2.2-py3-none-any.whl", hash = "sha256:bf490a1a709baf35d688fe0ecf980ed4de11d2b3e37b51e5442587a75d9957e7"},
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0.1"
 description = "YAML parser and emitter for Python"
@@ -1921,6 +2083,22 @@ files = [
 ]
 
 [[package]]
+name = "secretstorage"
+version = "3.3.3"
+description = "Python bindings to FreeDesktop.org Secret Service API"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "SecretStorage-3.3.3-py3-none-any.whl", hash = "sha256:f356e6628222568e3af06f2eba8df495efa13b3b63081dafd4f7d9a7b7bc9f99"},
+    {file = "SecretStorage-3.3.3.tar.gz", hash = "sha256:2403533ef369eca6d2ba81718576c5e0f564d5cca1b58f73a8b23e7d4eeebd77"},
+]
+
+[package.dependencies]
+cryptography = ">=2.0"
+jeepney = ">=0.6"
+
+[[package]]
 name = "setuptools"
 version = "68.2.2"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
@@ -1988,9 +2166,12 @@ charset-normalizer = ">=2,<4"
 cryptography = ">=3.1.0,<42.0.0"
 filelock = ">=3.5,<4"
 idna = ">=2.5,<4"
+keyring = {version = "<16.1.0 || >16.1.0,<25.0.0", optional = true, markers = "extra == \"secure-local-storage\""}
 oscrypto = "<2.0.0"
 packaging = "*"
+pandas = {version = ">=1.0.0,<2.1.0", optional = true, markers = "extra == \"pandas\""}
 platformdirs = ">=2.6.0,<3.9.0"
+pyarrow = {version = ">=10.0.1,<10.1.0", optional = true, markers = "extra == \"pandas\""}
 pycryptodomex = ">=3.2,<3.5.0 || >3.5.0,<4.0.0"
 pyjwt = "<3.0.0"
 pyOpenSSL = ">=16.2.0,<24.0.0"
@@ -2056,10 +2237,13 @@ hyperscript = "*"
 ipywidgets = "*"
 jinja2 = "*"
 pandas = "<2.1.0"
+psycopg2 = {version = "*", optional = true, markers = "extra == \"postgres\""}
+pyarrow = {version = ">=10.0.1,<10.1.0", optional = true, markers = "extra == \"snowflake\""}
 pydantic = {version = ">=1.10.7,<2.0.0", extras = ["email"]}
 requests = "*"
 rich = "*"
 "ruamel.yaml" = "*"
+snowflake-connector-python = {version = "*", extras = ["pandas", "secure-local-storage"], optional = true, markers = "extra == \"snowflake\""}
 sqlglot = ">=18.5.0,<18.6.0"
 
 [package.extras]
@@ -2269,7 +2453,23 @@ files = [
     {file = "widgetsnbextension-4.0.9.tar.gz", hash = "sha256:3c1f5e46dc1166dfd40a42d685e6a51396fd34ff878742a3e47c6f0cc4a2a385"},
 ]
 
+[[package]]
+name = "zipp"
+version = "3.16.2"
+description = "Backport of pathlib-compatible object wrapper for zip files"
+category = "dev"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "zipp-3.16.2-py3-none-any.whl", hash = "sha256:679e51dd4403591b2d6838a48de3d283f3d188412a9782faadf845f298736ba0"},
+    {file = "zipp-3.16.2.tar.gz", hash = "sha256:ebc15946aa78bd63458992fc81ec3b6f7b1e92d51c35e6de1c3804e73b799147"},
+]
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-ignore-flaky", "pytest-mypy (>=0.9.1)", "pytest-ruff"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "895aa2de6537b875b7871f8127960ff2a4cf66cb5d801fb402052f938151f416"
+content-hash = "1ef633e8883a7f5fc61708f16f99dd5a157901d565d5b31af371f2e0776db0ac"
