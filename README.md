@@ -1,12 +1,19 @@
 # sqlmeshsm
 
-[SQLMesh macros](https://sqlmesh.readthedocs.io/en/stable/concepts/macros/sqlmesh_macros/) used for ❄️ [Dynamic Masking Policies](https://docs.snowflake.com/en/user-guide/security-column-ddm-use) implementation ✏️, and the Snowflake Hooker CLI (`hook`) ⭐
+[![PyPI version](https://badge.fury.io/py/sqlmeshsm.svg)](https://pypi.org/project/sqlmeshsm/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![python](https://img.shields.io/badge/Python-3.9|3.10|3.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![codecov](https://codecov.io/gh/datnguye/sqlmesh-snow-mask/graph/badge.svg?token=ZcuyauQqoq)](https://codecov.io/gh/datnguye/sqlmesh-snow-mask)
+
+[SQLMesh macros](https://sqlmesh.readthedocs.io/en/stable/concepts/macros/sqlmesh_macros/) used for ❄️ [Dynamic Masking Policies](https://docs.snowflake.com/en/user-guide/security-column-ddm-use) Implementation ✏️
 
 **_List of macros_**:
 
 - `create_masking_policy` ([source](./sqlmeshsm/macros/create_masking_policy.py))
 - `apply_masking_policy` ([source](./sqlmeshsm/macros/apply_masking_policy.py))
-  
+
+And, the Snowflake Hooker CLI (`hook`) ⭐
+
 **_Hooks_**:
 
 - `hook drop_masking_policy -c {config.yml} -mp {func}`
@@ -42,7 +49,7 @@ There are 2 **masking functions**, they **must be created with following require
 CREATE MASKING POLICY IF NOT EXISTS @schema.mp_first_name AS (
     masked_column string
 ) RETURNS string ->
-    LEFT(CASE 
+    LEFT(CASE
         WHEN masked_column IS NOT NULL THEN LEFT(masked_column, 3)
         ELSE NULL
     END || '**********', 10);
@@ -54,7 +61,7 @@ CREATE MASKING POLICY IF NOT EXISTS @schema.mp_last_name AS (
     masked_column string,
     first_name_column string
 ) RETURNS string ->
-    CASE 
+    CASE
         WHEN masked_column IS NOT NULL THEN LEFT(first_name_column, 1)
         ELSE NULL
     END;
