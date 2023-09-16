@@ -102,7 +102,6 @@ hook drop_masking_policy -c /path/to/sqlmesh/config.yml -mp you_mp_function_name
 
 [![buy me a coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?logo=buy-me-a-coffee&logoColor=white&labelColor=ff813f&style=for-the-badge)](https://www.buymeacoffee.com/datnguye)
 
-
 If you've ever wanted to contribute to this tool, and a great cause, now is your chance!
 
 See the contributing docs [CONTRIBUTING](./CONTRIBUTING.md) for more information.

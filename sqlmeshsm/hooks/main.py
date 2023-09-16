@@ -42,12 +42,3 @@ def hook__drop_masking_policy(ctx, **kwargs):
         mp_func_name=kwargs.get("masking_policy_function"),
         config_path=kwargs.get("config"),
     )
-
-
-# hook custom /path/to/your_hook.py
-@hook.command(name="custom")
-@click.pass_context
-@click.argument("filepath")
-def hook__custom(ctx, filepath, **kwargs):
-    """Custom Hook > Write your hook in python file and run"""
-    run_custom_hook(path=filepath)
