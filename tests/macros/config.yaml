@@ -21,15 +21,15 @@ gateways:
             password: admin
             port: 5432
             concurrent_tasks: 1 # postgres race condition issue
-    snowflake:
-        connection:
-            type: snowflake
-            account: ************
-            user: ************
-            password: ************
-            warehouse: ************
-            database: ************
-            role: ************
+    # snowflake:
+    #     connection:
+    #         type: snowflake
+    #         account: ************
+    #         user: ************
+    #         password: ************
+    #         warehouse: ************
+    #         database: ************
+    #         role: ************
 
 default_gateway: local_postgres
 
