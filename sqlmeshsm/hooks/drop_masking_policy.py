@@ -1,6 +1,6 @@
-import pandas as pd
 import snowflake.connector
 import yaml
+from pandas import DataFrame
 
 from sqlmeshsm.hooks.helper import SQLQuery
 
@@ -29,7 +29,7 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
     cursor.execute(
         sqlq.take("fetch_masking_policy_references", **dict(mp_func_name=mp_func_name))
     )
-    columns = pd.DataFrame.from_records(
+    columns = DataFrame.from_records(
         iter(cursor), columns=[x[0] for x in cursor.description]
     )
 

@@ -5,7 +5,7 @@ import click
 from sqlmeshsm.hooks.main import hook
 
 
-class HookRunner:
+class HookRunner:  # pragma: no cover
     """Support runner for the programatic call"""
 
     def __init__(self) -> None:

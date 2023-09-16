@@ -1,1 +1,1 @@
-DROP MASKING POLICY @mp_func_name;
+
