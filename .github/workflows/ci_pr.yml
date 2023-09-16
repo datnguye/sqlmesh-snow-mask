@@ -82,5 +82,5 @@ jobs:
 
       - name: Run tests
         run: |
-          cd tests\macros
+          cd tests/macros
           poetry run sqlmesh --gateway postgres plan --auto-apply
