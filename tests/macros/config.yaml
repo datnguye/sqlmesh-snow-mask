@@ -1,0 +1,37 @@
+gateways:
+    local:
+        connection:
+            type: duckdb
+            database: db.db
+    local_postgres:
+        connection:
+            type: postgres
+            host: localhost
+            database: sqlmeshsm
+            user: postgres
+            password: admin
+            port: 5432
+            concurrent_tasks: 1 # postgres race condition issue
+    postgres:
+        connection:
+            type: postgres
+            host: localhost
+            database: postgres
+            user: postgres
+            password: admin
+            port: 5432
+            concurrent_tasks: 1 # postgres race condition issue
+    # snowflake:
+    #     connection:
+    #         type: snowflake
+    #         account: ************
+    #         user: ************
+    #         password: ************
+    #         warehouse: ************
+    #         database: ************
+    #         role: ************
+
+default_gateway: local_postgres
+
+model_defaults:
+    dialect: postgres
