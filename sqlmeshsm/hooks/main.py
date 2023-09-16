@@ -6,6 +6,7 @@ from sqlmeshsm.hooks.drop_masking_policy import drop_masking_policy
 
 __version__ = importlib.metadata.version("sqlmeshsm")
 
+
 # hook
 @click.group(
     context_settings={"help_option_names": ["-h", "--help"]},
