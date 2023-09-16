@@ -47,8 +47,3 @@ class TestRunner:
         mock_drop_masking_policy.assert_called_once_with(
             mp_func_name="dummy", config_path="/path/to/config.yml"
         )
-
-    @mock.patch("sqlmeshsm.hooks.main.run_custom_hook")
-    def test_command__custom(self, mock_run_custom_hook, hook: HookRunner) -> None:
-        hook.invoke(["custom", "/path/to/file.py"])
-        mock_run_custom_hook.assert_called_once_with(path="/path/to/file.py")

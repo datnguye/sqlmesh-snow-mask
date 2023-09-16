@@ -2,7 +2,6 @@ import importlib.metadata
 
 import click
 
-from sqlmeshsm.hooks.custom import run_custom_hook
 from sqlmeshsm.hooks.drop_masking_policy import drop_masking_policy
 
 __version__ = importlib.metadata.version("sqlmeshsm")

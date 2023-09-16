@@ -10,7 +10,6 @@
 **_Hooks_**:
 
 - `hook drop_masking_policy -c {config.yml} -mp {func}`
-- `hook custom /path/to/my_hook.py
 
 ## Data Masking Development
 
@@ -92,12 +91,13 @@ Let's run the built-in hooks:
 
 ```bash
 hook drop_masking_policy -c /path/to/sqlmesh/config.yml -mp you_mp_function_name
+# for example: hook drop_masking_policy -c tests\macros\config.yaml -mp common.mp_first_name
 ```
 
 > Try `hook -h` for more options.
 
 **_Voila! Happy Masking 🎉_**
-<!-- 
+
 ## Contribution
 
 [![buy me a coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?logo=buy-me-a-coffee&logoColor=white&labelColor=ff813f&style=for-the-badge)](https://www.buymeacoffee.com/datnguye)
@@ -111,4 +111,4 @@ Our **_Contributors_**:
 
 <a href="https://github.com/datnguye/sqlmesh-snow-mask/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=datnguye/sqlmesh-snow-mask" />
-</a> -->
+</a>

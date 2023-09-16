@@ -2,6 +2,10 @@ import pandas as pd
 import snowflake.connector
 import yaml
 
+from sqlmeshsm.hooks.helper import SQLQuery
+
+sqlq = SQLQuery()
+
 
 def drop_masking_policy(mp_func_name: str, config_path: str):
     """Drop masking policy by a given name
@@ -23,22 +27,7 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
 
     # Fetch & Unset masking policy references
     cursor.execute(
-        f"""
-        SELECT  C.COLUMN_NAME as COLUMN,
-                T.TABLE_CATALOG || '.' || T.TABLE_SCHEMA || '.' || T.TABLE_NAME AS MODEL,
-                T.TABLE_TYPE as MATERIALIZATION
-                
-        FROM    INFORMATION_SCHEMA.MASKING_POLICY_REFERENCES AS M
-        JOIN    INFORMATION_SCHEMA.COLUMNS AS C
-            ON  M.REF_COLUMN_NAME = C.COLUMN_NAME
-            AND M.REF_TABLE_NAME = C.TABLE_NAME
-            AND M.REF_TABLE_SCHEMA = C.TABLE_SCHEMA
-        JOIN    INFORMATION_SCHEMA.TABLES AS T
-            ON  M.TABLE_NAME = T.TABLE_NAME
-            AND M.TABLE_SCHEMA = T.TABLE_SCHEMA
-        
-        WHERE   M.MASKING_POLICY_FUNCTION_NAME = '{mp_func_name}';
-    """
+        sqlq.take("fetch_masking_policy_references", **dict(mp_func_name=mp_func_name))
     )
     columns = pd.DataFrame.from_records(
         iter(cursor), columns=[x[0] for x in cursor.description]
@@ -46,15 +35,20 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
 
     unset_sql = ""
     for column in columns:
-        unset_sql += f"""
-            ALTER TABLE {column.materialization} {column.model}
-            ALTER COLUMN {column.column}
-            UNSET MASKING POLICY;
-        """
+        unset_sql += sqlq.take(
+            "unset_masking_policy",
+            **dict(
+                materialization=column.materialization,
+                model=column.model,
+                column=column.column,
+            )
+        )
         cursor.execute(unset_sql)
 
     # Drop the masking policy
-    cursor.execute(expressions=f"DROP MASKING POLICY {mp_func_name};")
+    cursor.execute(
+        expressions=sqlq.take("drop_masking_policy", **dict(mp_func_name=mp_func_name))
+    )
 
     # Clean up
     cursor.close()

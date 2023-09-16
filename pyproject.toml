@@ -25,7 +25,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-sqlmesh = "^0.30"
+sqlmesh = "^0.31"
 click = "^8.1.7"
 snowflake-connector-python = "^3.1.1"
 
