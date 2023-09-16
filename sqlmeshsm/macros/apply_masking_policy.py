@@ -10,7 +10,7 @@ def apply_masking_policy(
     column,
     func,
     conditional_columns=[],
-    materialization="TABLE",
+    materialization="VIEW",
     dry_run=False,
 ):
     cond_columns = ",".join([x.name for x in conditional_columns.expressions])

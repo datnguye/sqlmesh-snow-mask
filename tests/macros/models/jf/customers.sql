@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS common.log (
   id VARCHAR
 ); /* for faking mp */
 
-@create_masking_policy(common.mp_first_name, None, True);
+@create_masking_policy(common.mp_first_name);
 
-@create_masking_policy(common.mp_last_name, None, True);
+@create_masking_policy(common.mp_last_name);
 
 WITH customers AS (
   SELECT
@@ -64,6 +64,6 @@ SELECT
   *
 FROM final;
 
-@apply_masking_policy(jf.customers, first_name, common.mp_first_name, ARRAY[], "TABLE", True);
+@apply_masking_policy(jf.customers, first_name, common.mp_first_name, ARRAY[]);
 
-@apply_masking_policy(jf.customers, last_name, common.mp_last_name, ARRAY['first_name'], "TABLE", True)
+@apply_masking_policy(jf.customers, last_name, common.mp_last_name, ARRAY['first_name'])
