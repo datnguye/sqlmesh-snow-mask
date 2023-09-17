@@ -1,4 +1,4 @@
-# sqlmeshsm
+# sqlmeshsm [EXPERIMENTAL]
 
 [![PyPI version](https://badge.fury.io/py/sqlmeshsm.svg)](https://pypi.org/project/sqlmeshsm/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
