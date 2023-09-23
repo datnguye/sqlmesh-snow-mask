@@ -23,7 +23,7 @@ def apply_masking_policy(
         model=model,
         column=column,
         func=func,
-        conditional_columns=f"USING ({cond_columns})" if cond_columns else "",
+        conditional_columns=f"USING ({column}, {cond_columns})" if cond_columns else "",
     )
 
     if dry_run:

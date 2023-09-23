@@ -37,7 +37,7 @@ from sqlmeshsm import macros
 _For example_, the `customer` table needs the following masking policies:
 
 - First Name: mask with `*` except the first 3 characters, fixed length of 10, no masking of `null`
-- Last Name: mask with the first character of First Name, no masking of `null`
+- Last Name: mask with the first character of Full Name, no masking of `null`
 
 There are 2 **masking functions**, they **must be created with following requirements**:
 
@@ -59,10 +59,10 @@ CREATE MASKING POLICY IF NOT EXISTS @schema.mp_first_name AS (
 -- /snow-mask-ddl/mp_schema.mp_last_name.sql
 CREATE MASKING POLICY IF NOT EXISTS @schema.mp_last_name AS (
     masked_column string,
-    first_name_column string
+    full_name_column string
 ) RETURNS string ->
     CASE
-        WHEN masked_column IS NOT NULL THEN LEFT(first_name_column, 1)
+        WHEN masked_column IS NOT NULL THEN LEFT(full_name_column, 1)
         ELSE NULL
     END;
 ```
@@ -79,15 +79,18 @@ MODEL(
     ...
 )
 
+/* MODEL SQL CODE HERE */
+
+/* OPTIONAL, ADD this if mp_schema schema is not part of any models */
+CREATE SCHEMA IF NOT EXISTS mp_schema;
+
 /* REGISTER the masking funcs */
 @create_masking_policy(mp_schema.mp_first_name)
 @create_masking_policy(mp_schema.mp_last_name)
 
-/* MODEL SQL CODE HERE */
-
 /* USE the masking funcs */
 @apply_masking_policy(first_name, mp_schema.mp_first_name)
-@apply_masking_policy(my_schema.my_customer_model, last_name, mp_schema.mp_last_name, ['first_name'])
+@apply_masking_policy(my_schema.my_customer_model, last_name, mp_schema.mp_last_name, ['full_name'])
 ```
 
 Let's plan and apply it now: `sqlmesh plan --select-model my_schema.my_customer_model`

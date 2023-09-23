@@ -8,7 +8,7 @@ def create_masking_policy(
     evaluator: MacroEvaluator,
     func,
     ddl_dir=None,
-    dry_run=True,
+    dry_run=False,
 ):
     dir = ddl_dir.expression if hasattr(ddl_dir, "expression") else None
     if dir is None:

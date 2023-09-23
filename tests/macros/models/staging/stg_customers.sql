@@ -2,7 +2,7 @@ MODEL (
   name jf.stg_customers,
   kind VIEW,
   cron '@daily',
-  grain ARRAY[customer_id]
+  grain [customer_id]
 );
 
 WITH source AS (
