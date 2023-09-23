@@ -7,14 +7,14 @@
 
 [SQLMesh macros](https://sqlmesh.readthedocs.io/en/stable/concepts/macros/sqlmesh_macros/) used for ❄️ [Dynamic Masking Policies](https://docs.snowflake.com/en/user-guide/security-column-ddm-use) Implementation ✏️
 
-**_List of macros_**:
+**_List of macros_** 🚧 _(currently blocked by awaiting for more supports from the sqlmesh's  Macro Context)_
 
 - `create_masking_policy` ([source](./sqlmeshsm/macros/create_masking_policy.py))
 - `apply_masking_policy` ([source](./sqlmeshsm/macros/apply_masking_policy.py))
 
 And, the Snowflake Hooker CLI (`hook`) ⭐
 
-**_Hooks_**:
+**_Hooks_** ✅
 
 - `hook drop_masking_policy -c {config.yml} -mp {func}`
 
