@@ -30,24 +30,29 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
 
         # Fetch & Unset masking policy references
         sql = sqlq.take("fetch_masking_policy_references")
+        print(f"** Executing: \n{sql % mp_func_name}")
         cursor.execute(command=sql, params=[mp_func_name])
         columns = DataFrame.from_records(
             iter(cursor), columns=[x[0] for x in cursor.description]
         )
 
         if not columns.empty:
-            sql = sqlq.take("unset_masking_policy")
+
             for _, column in columns.iterrows():
+                sql = sqlq.take("unset_masking_policy").format(
+                    column["MATERIALIZATION"],
+                    column["MODEL"],
+                    column["COLUMN_NAME"],
+                )
+                print(f"** Executing: \n{sql}")
                 cursor.execute(
-                    command=sql.format(
-                        column["MATERIALIZATION"],
-                        column["MODEL"],
-                        column["COLUMN_NAME"],
-                    ),
+                    command=sql,
                 )
 
         # Drop the masking policy
-        cursor.execute(command=sqlq.take("drop_masking_policy").format(mp_func_name))
+        sql = sqlq.take("drop_masking_policy").format(mp_func_name)
+        print(f"** Executing: \n{sql}")
+        cursor.execute(command=sql)
     except Exception as e:  # pragma: no cover
         print(f"Failed to drop [{mp_func_name}] masking policy: {str(e)}")
 
