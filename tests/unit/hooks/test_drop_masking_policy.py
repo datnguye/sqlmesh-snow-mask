@@ -106,13 +106,23 @@ class TestDropMaskingPolicy:
         _ = drop_masking_policy.drop_masking_policy(
             mp_func_name="dummy", config_path="dummy"
         )
-        calls = [
-            mock.call("fetch_masking_policy_references"),
-            mock.call("drop_masking_policy"),
-        ]
-        mock_SQLQuery_take.assert_has_calls(
-            calls, any_order=(len(mock_from_records_rv) != 0)
-        )
+
         mock_connector_connect.assert_called_once()
         if not mock_from_records_rv.empty:
             assert mock_from_records.call_count == len(mock_from_records_rv)
+            mock_SQLQuery_take.assert_has_calls(
+                [
+                    mock.call("fetch_masking_policy_references"),
+                    mock.call("unset_masking_policy"),
+                    mock.call("drop_masking_policy"),
+                ],
+                any_order=True,
+            )
+        else:
+            mock_SQLQuery_take.assert_has_calls(
+                [
+                    mock.call("fetch_masking_policy_references"),
+                    mock.call("drop_masking_policy"),
+                ],
+                any_order=True,
+            )

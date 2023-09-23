@@ -37,7 +37,6 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
         )
 
         if not columns.empty:
-
             for _, column in columns.iterrows():
                 sql = sqlq.take("unset_masking_policy").format(
                     column["MATERIALIZATION"],
