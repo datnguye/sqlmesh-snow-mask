@@ -24,31 +24,39 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
         config = config_content
 
     # Engine initilization
-    connection = snowflake.connector.connect(**config)
-    cursor = connection.cursor()
+    try:
+        connection = snowflake.connector.connect(**config)
+        cursor = connection.cursor()
 
-    # Fetch & Unset masking policy references
-    sql = sqlq.take("fetch_masking_policy_references")
-    cursor.execute(command=sql, params=[mp_func_name])
-    columns = DataFrame.from_records(
-        iter(cursor), columns=[x[0] for x in cursor.description]
-    )
+        # Fetch & Unset masking policy references
+        sql = sqlq.take("fetch_masking_policy_references")
+        cursor.execute(command=sql, params=[mp_func_name])
+        columns = DataFrame.from_records(
+            iter(cursor), columns=[x[0] for x in cursor.description]
+        )
 
-    if not columns.empty:
-        sql = sqlq.take("unset_masking_policy")
-        for _, column in columns.iterrows():
-            cursor.execute(
-                command=sql.format(
-                    column["MATERIALIZATION"], column["MODEL"], column["COLUMN_NAME"]
-                ),
-            )
+        if not columns.empty:
+            sql = sqlq.take("unset_masking_policy")
+            for _, column in columns.iterrows():
+                cursor.execute(
+                    command=sql.format(
+                        column["MATERIALIZATION"],
+                        column["MODEL"],
+                        column["COLUMN_NAME"],
+                    ),
+                )
 
-    # Drop the masking policy
-    cursor.execute(command=sqlq.take("drop_masking_policy").format(mp_func_name))
+        # Drop the masking policy
+        cursor.execute(command=sqlq.take("drop_masking_policy").format(mp_func_name))
+    except Exception as e:  # pragma: no cover
+        print(f"Failed to drop [{mp_func_name}] masking policy: {str(e)}")
 
-    # Clean up
-    cursor.close()
-    connection.close()
+    else:
+        print(f"Dropped [{mp_func_name}] masking policy successfully")
+    finally:
+        # Clean up
+        cursor.close()
+        connection.close()
 
 
 def parse_sqlmesh_config(config: dict):
