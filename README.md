@@ -101,7 +101,7 @@ Let's run the built-in hooks:
 
 ```bash
 hook drop_masking_policy -c /path/to/sqlmesh/config.yml -mp you_mp_function_name
-# for example: hook drop_masking_policy -c tests\macros\config.yaml -mp common.mp_first_name
+# for example: hook drop_masking_policy -c C:\Users\DAT\.sqlmesh\config.yml -mp common.mp_first_name
 ```
 
 > Try `hook -h` for more options.

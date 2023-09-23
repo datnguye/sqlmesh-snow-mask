@@ -1,3 +1,5 @@
+import os
+
 import snowflake.connector
 import yaml
 from pandas import DataFrame
@@ -26,29 +28,23 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
     cursor = connection.cursor()
 
     # Fetch & Unset masking policy references
-    cursor.execute(
-        sqlq.take("fetch_masking_policy_references", **dict(mp_func_name=mp_func_name))
-    )
+    sql = sqlq.take("fetch_masking_policy_references")
+    cursor.execute(command=sql, params=[mp_func_name])
     columns = DataFrame.from_records(
         iter(cursor), columns=[x[0] for x in cursor.description]
     )
 
-    unset_sql = ""
-    for column in columns:
-        unset_sql += sqlq.take(
-            "unset_masking_policy",
-            **dict(
-                materialization=column.materialization,
-                model=column.model,
-                column=column.column,
+    if not columns.empty:
+        sql = sqlq.take("unset_masking_policy")
+        for _, column in columns.iterrows():
+            cursor.execute(
+                command=sql.format(
+                    column["MATERIALIZATION"], column["MODEL"], column["COLUMN_NAME"]
+                ),
             )
-        )
-        cursor.execute(unset_sql)
 
     # Drop the masking policy
-    cursor.execute(
-        expressions=sqlq.take("drop_masking_policy", **dict(mp_func_name=mp_func_name))
-    )
+    cursor.execute(command=sqlq.take("drop_masking_policy").format(mp_func_name))
 
     # Clean up
     cursor.close()
@@ -64,8 +60,21 @@ def __parse_sqlmesh_config(config: dict):
     Returns:
         dict: Config dict or None if failed to parse
     """
-    return (
+    _config = (
         config.get("gateways", {})
         .get(config.get("default_gateway", ""), {})
         .get("connection")
     )
+    if not _config:
+        return None
+
+    return dict(
+        user=_config.get("user"),
+        password=_config.get("password"),
+        account=_config.get("account"),
+        warehouse=_config.get("warehouse"),
+        database=_config.get("database"),
+        session_parameters={
+            "QUERY_TAG": f"sqlmeshsm-hook:{os.path.basename(__file__)}",
+        },
+    )  # pragma: no cover

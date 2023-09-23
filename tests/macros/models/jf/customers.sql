@@ -7,7 +7,7 @@ MODEL (
 
 
 CREATE SCHEMA IF NOT EXISTS common; /* prepare mp */
-CREATE TABLE IF NOT EXISTS common.log (
+CREATE OR REPLACE TABLE common.log (
   id VARCHAR
 ); /* for faking mp */
 @create_masking_policy(common.mp_first_name, None, TRUE); /* @create_masking_policy(common.mp_first_name); */
