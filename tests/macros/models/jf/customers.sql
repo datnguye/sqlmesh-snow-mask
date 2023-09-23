@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS common.log (
   id VARCHAR
 ); /* for faking mp */
 @create_masking_policy(common.mp_first_name, None, TRUE); /* @create_masking_policy(common.mp_first_name); */
-@create_masking_policy(common.mp_last_name, None. TRUE);/* @create_masking_policy(common.mp_last_name); */
+@create_masking_policy(common.mp_last_name, None, TRUE);/* @create_masking_policy(common.mp_last_name); */
 
 WITH customers AS (
   SELECT
