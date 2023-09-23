@@ -8,6 +8,67 @@ from sqlmeshsm.hooks import drop_masking_policy
 
 class TestDropMaskingPolicy:
     @pytest.mark.parametrize(
+        "config, result",
+        [
+            (
+                dict(
+                    gateways=dict(
+                        data=dict(
+                            connection=dict(
+                                user="data",
+                                password="data",
+                                account="data",
+                                warehouse="data",
+                                database="data",
+                            )
+                        )
+                    ),
+                    default_gateway="data",
+                ),
+                dict(
+                    user="data",
+                    password="data",
+                    account="data",
+                    warehouse="data",
+                    database="data",
+                    session_parameters=dict(
+                        QUERY_TAG="sqlmeshsm-hook:drop_masking_policy.py"
+                    ),
+                ),
+            ),
+            (
+                dict(
+                    gateways=dict(
+                        data=dict(
+                            connection=dict(
+                                user="data",
+                                authenticator="externalbrowser",
+                                account="data",
+                                warehouse="data",
+                                database="data",
+                            )
+                        )
+                    ),
+                    default_gateway="data",
+                ),
+                dict(
+                    user="data",
+                    account="data",
+                    warehouse="data",
+                    database="data",
+                    session_parameters=dict(
+                        QUERY_TAG="sqlmeshsm-hook:drop_masking_policy.py"
+                    ),
+                    authenticator="externalbrowser",
+                ),
+            ),
+            (None, None),
+        ],
+    )
+    def test_parse_sqlmesh_config(self, config, result):
+        assert result == drop_masking_policy.parse_sqlmesh_config(config=config)
+
+    @pytest.mark.parametrize(
         "mock_from_records_rv",
         [
             (DataFrame()),
@@ -26,12 +87,12 @@ class TestDropMaskingPolicy:
         "builtins.open",
         mock.mock_open(
             read_data="""
-        user: data
-        password: data
-        account: data
-        warehouse: data
-        database: data
-    """
+                user: data
+                password: data
+                account: data
+                warehouse: data
+                database: data
+            """
         ),
     )
     def test_drop_masking_policy(

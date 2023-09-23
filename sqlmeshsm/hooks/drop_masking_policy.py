@@ -19,7 +19,7 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
     with open(config_path, "r") as yaml_file:
         config_content = yaml.safe_load(yaml_file)
 
-    config = __parse_sqlmesh_config(config=config_content)
+    config = parse_sqlmesh_config(config=config_content)
     if not config:
         config = config_content
 
@@ -51,7 +51,7 @@ def drop_masking_policy(mp_func_name: str, config_path: str):
     connection.close()
 
 
-def __parse_sqlmesh_config(config: dict):
+def parse_sqlmesh_config(config: dict):
     """Follow the SQLMesh config.yml file and parse the connection info
 
     Args:
@@ -60,6 +60,9 @@ def __parse_sqlmesh_config(config: dict):
     Returns:
         dict: Config dict or None if failed to parse
     """
+    if not config:
+        return None
+
     _config = (
         config.get("gateways", {})
         .get(config.get("default_gateway", ""), {})
@@ -68,7 +71,7 @@ def __parse_sqlmesh_config(config: dict):
     if not _config:
         return None
 
-    return dict(
+    r = dict(
         user=_config.get("user"),
         password=_config.get("password"),
         account=_config.get("account"),
@@ -77,4 +80,10 @@ def __parse_sqlmesh_config(config: dict):
         session_parameters={
             "QUERY_TAG": f"sqlmeshsm-hook:{os.path.basename(__file__)}",
         },
-    )  # pragma: no cover
+    )
+
+    if _config.get("authenticator"):
+        r["authenticator"] = "externalbrowser"
+        r.pop("password")
+
+    return r
