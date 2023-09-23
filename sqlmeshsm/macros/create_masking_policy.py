@@ -8,9 +8,9 @@ def create_masking_policy(
     evaluator: MacroEvaluator,
     func,
     ddl_dir=None,
-    dry_run=True,
+    dry_run=False,
 ):
-    dir = ddl_dir.expression
+    dir = ddl_dir.expression if hasattr(ddl_dir, "expression") else None
     if dir is None:
         dir = f"{os.getcwd()}/macros/snow-mask-ddl"
     ddl_file = f"{dir}/{func}.sql"
@@ -24,9 +24,7 @@ def create_masking_policy(
     with open(ddl_file, "r") as file:
         content = file.read()
 
-    sql = ";".join(
-        [f"CREATE SCHEMA IF NOT EXISTS {schema}", content.replace("@schema", schema)]
-    )
+    sql = content.replace("@schema", schema)
     if dry_run:
         sql = sql.replace("'", "''")
         return f"INSERT INTO common.log (id) VALUES('{sql}')"

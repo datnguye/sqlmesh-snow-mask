@@ -5,15 +5,13 @@ MODEL (
   grain ARRAY[customer_id]
 );
 
-CREATE SCHEMA IF NOT EXISTS common; /* for faking mp */
 
+CREATE SCHEMA IF NOT EXISTS common; /* prepare mp */
 CREATE TABLE IF NOT EXISTS common.log (
   id VARCHAR
 ); /* for faking mp */
-
-@create_masking_policy(common.mp_first_name, None, True);
-
-@create_masking_policy(common.mp_last_name, None, True);
+@create_masking_policy(common.mp_first_name, None, TRUE); /* @create_masking_policy(common.mp_first_name); */
+@create_masking_policy(common.mp_last_name, None, TRUE);/* @create_masking_policy(common.mp_last_name); */
 
 WITH customers AS (
   SELECT
@@ -50,6 +48,7 @@ WITH customers AS (
     customers.customer_id,
     customers.first_name,
     customers.last_name,
+    concat(customers.first_name, customers.last_name) as full_name,
     customer_orders.first_order,
     customer_orders.most_recent_order,
     customer_orders.number_of_orders,
@@ -64,6 +63,5 @@ SELECT
   *
 FROM final;
 
-@apply_masking_policy(jf.customers, first_name, common.mp_first_name, ARRAY[], "TABLE", True);
-
-@apply_masking_policy(jf.customers, last_name, common.mp_last_name, ARRAY['first_name'], "TABLE", True)
+@apply_masking_policy(jf.customers, first_name, common.mp_first_name, ARRAY[], 'VIEW', TRUE); /* @apply_masking_policy(jf.customers, first_name, common.mp_first_name, ARRAY[]); */
+@apply_masking_policy(jf.customers, last_name, common.mp_last_name, ARRAY['full_name'], 'VIEW', TRUE); /* @apply_masking_policy(jf.customers, last_name, common.mp_last_name, ARRAY['full_name']); */

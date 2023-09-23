@@ -38,7 +38,7 @@ def hook(ctx, **kwargs):
     type=click.STRING,
 )
 def hook__drop_masking_policy(ctx, **kwargs):
-    """Snowflake Hook > Drop masking policy by given name [In Development]"""
+    """Snowflake Hook > Drop masking policy by given name"""
     drop_masking_policy(
         mp_func_name=kwargs.get("masking_policy_function"),
         config_path=kwargs.get("config"),

@@ -2,10 +2,10 @@ MODEL (
   name jf.orders,
   kind FULL,
   cron '@daily',
-  grain ARRAY[order_id]
+  grain [order_id]
 );
 
-@DEF(payment_methods, ARRAY['credit_card', 'coupon', 'bank_transfer', 'gift_card']);
+@DEF(payment_methods, ['credit_card', 'coupon', 'bank_transfer', 'gift_card']);
 
 WITH orders AS (
   SELECT
